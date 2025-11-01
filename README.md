@@ -1,106 +1,108 @@
-<div align="center">
-  <br />
-    <a href="your-demo-video-link" target="_blank">
-      <img src="./public/report.jpg" alt="Project Banner">
-    </a>
-  
-  <br />
+____________________________________________________________________________________________
 
-  <div>
-    <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
-    <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
-    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
-    <img src="https://img.shields.io/badge/-Prisma-black?style=for-the-badge&logoColor=white&logo=prisma&color=2D3748" alt="prisma" />
-  </div>
+💡 PROJECT OVERVIEW
 
-  <h3 align="center">Anonymous Reporting App</h3>
+This repository contains a fully functional, stable, and customized version of a crime reporting application. This version was built from a problematic base and features a complete overhaul of critical components to ensure reliability and modern performance.
+____________________________________________________________________________________________
 
-   <div align="center">
-     A secure platform for anonymous incident reporting
-    </div>
-</div>
+💡 Key Overhaul Achievements:
 
-## 📋 <a name="table">Table of Contents</a>
+Category                  |          Status in this Repository                        
+1. AI Image Analysis      |    FIXED (Migrated to modern Google GenAI API)
+2. Mapping Service        |    FIXED (Replaced Mapbox with free-tier MapTiler)
+3. Core Components        |    ADDED (Missing shadcn/ui components installed)
+4. New Pages              |    ADDED (Custom /contact and /resources pages built)
+____________________________________________________________________________________________
 
-1. 🤖 [Introduction](#introduction)
-2. ⚙️ [Tech Stack](#tech-stack)
-3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🕸️ [Environment Setup](#environment)
-6. 🚀 [Deployment](#deployment)
+🔋 Key Features
 
-## <a name="introduction">🤖 Introduction</a>
+- Anonymous Reporting: Submit incident details without providing personal identification.
 
-This is a state-of-the-art anonymous reporting system built with Next.js 14, designed to provide a secure platform for reporting incidents while maintaining complete anonymity.
+- AI Image Analysis: The Google GenAI model analyzes uploaded image evidence and automatically populates the report title and description.
 
-## <a name="tech-stack">⚙️ Tech Stack</a>
+- Interactive Map: Uses MapTiler for precise location tagging.
 
-- Next.js 14
-- TypeScript
-- Prisma with Neon Database
-- NextAuth.js for Authentication
-- Tailwind CSS
-- React Hook Form
-- GeminiAI
-- BCrypt for Password Encryption
+- Report Tracking: Users receive a unique ID to track the status of their submitted report 
+(Pending, In-Progress, Resolved).
 
-## <a name="quick-start">🤸 Quick Start</a>
+- Resources Page: Provides quick access to essential emergency contact numbers and safety guides.
 
-**Prerequisites**
+- Contact Page: Includes contact information and a functional form for general inquiries.
+____________________________________________________________________________________________
 
-Make sure you have the following installed:
+⚙️ Core Technology Stack
 
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/)
-- [Git](https://git-scm.com/)
+1. Frontend: Built on Next.js 14 (App Router), providing a robust framework for full-stack development.
 
-**Installation**
+2. Styling: Uses Tailwind CSS for fast, utility-first styling, complemented by shadcn/ui for accessible components.
 
-```bash
-# Clone the repository
-git clone <your-repo-url>
-cd anonymous-reporting-system
+3. Database: A serverless Neon (Postgres) database, managed efficiently with the type-safe object-relational mapper (Prisma).
 
-# Install dependencies
+4. Mapping: The geographic interface uses MapTiler as the cost-effective provider for map tiles and location display.
+
+5. AI/Vision: Handles multimodal analysis via Google GenAI (@google/genai), utilizing the powerful gemini-2.5-flash model.
+
+6. Authentication: Secure sign-in and session management are handled by NextAuth.js.
+____________________________________________________________________________________________
+
+🚀 Local Development Guide
+
+1. Prerequisites
+
+- Node.js (v18 or higher)
+- npm
+- Git
+
+2. Installation & Database Setup
+
+# Clone this repository
+git clone [https://github.com/Shivang2608/Crime-report-app.git](https://github.com/Shivang2608/Crime-report-app.git)
+cd Crime-report-app
+
+# Install all dependencies (including packages fixed/added by us)
 npm install
 
-# Set up the database
-npx prisma generate
+# Push the schema to your Neon database
 npx prisma db push
 
 # Start the development server
 npm run dev
-```
 
-## <a name="environment">🕸️ Environment Setup</a>
+Your application will be available at http://localhost:3000
 
-Create a `.env` file in the root directory with the following variables:
+3. Environment Variables
 
-```env
+Create a file named .env in the root of the project and populate it with your keys:
 
-NEXT_PUBLIC_MAPBOX_API_KEY=your-mapbox-key
-DATABASE_URL=postgresql:your-database-url
-NEXTAUTH_SECRET="your-secret-key"
+# 1. Neon Database URL
+DATABASE_URL="postgresql://user:password@host/dbname"
+
+# 2. Google Gemini API Key
+# Must be linked to a Google Cloud Project with Billing enabled (free tier still applies)
+GEMINI_API_KEY="YOUR_GOOGLE_API_KEY"
+
+# 3. MapTiler API Key
+# Get this from your free MapTiler account (replaces Mapbox)
+NEXT_PUBLIC_MAPBOX_API_KEY="YOUR_MAPTILER_API_KEY"
+NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN="YOUR_MAPTILER_API_KEY"
+
+# 4. NextAuth Secret
+# Use 'node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"'
+NEXTAUTH_SECRET="YOUR_RANDOM_SECRET_KEY"
 NEXTAUTH_URL="http://localhost:3000/api/auth"
-GEMINI_API_KEY=your-gemini-api-key
-NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your-mapbox-access-api-key
 
+____________________________________________________________________________________________
 
-```
+🔗 Navigation
 
-## <a name="deployment">🚀 Deployment</a>
+1. Project Overview
+2. Key Features
+3. Tech Stack
+4. Local Development Guide
+5. Environment Variables
 
-The application can be easily deployed on [Vercel](https://vercel.com):
+Final Note
 
-1. Push your code to a Git repository
-2. Connect your repository to Vercel
-3. Configure the environment variables
-4. Deploy!
+Thank you for your patience and effort in fixing every bug with me—it was a difficult process, but we built a stable, modern application together!
 
-## 🤝 Contributing
-
-Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) first.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+____________________________________________________________________________________________
